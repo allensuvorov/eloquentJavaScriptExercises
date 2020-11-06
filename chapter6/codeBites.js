@@ -9,6 +9,23 @@
 
 // no code here, because we don't want to
 
+// New! Class properties are public by default and can be examined or 
+// modified outside the class. There is however an experimental 
+// proposal to allow defining private class fields using a hash # prefix.
+class ClassWithPrivateField {
+    #privateField
+}
+
+class ClassWithPrivateMethod { 
+    #privateMethod() { 
+        return 'hello world'
+    }
+}
+
+class ClassWithPrivateStaticField {
+    static #PRIVATE_STATIC_FIELD
+}
+
 // 6.2. Methods
 
 // cat says meow
