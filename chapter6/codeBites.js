@@ -13,10 +13,13 @@
     // modified outside the class. There is however an experimental 
     // proposal to allow defining private class fields using a hash # prefix.
 class ClassWithPrivateField {
+    /** @private @const {!Bar} */
     #privateField = 10;
     #privateFieldUnused;
     publicField = 20;
     publicFieldUnused;
+    _privateByConventionField;
+
     get privateField() {
         return this.#privateField;
     } 
