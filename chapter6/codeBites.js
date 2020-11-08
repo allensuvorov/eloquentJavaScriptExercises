@@ -1,7 +1,7 @@
 // The chapter is very hm... interesting, need to review again.
 // Format: Section Name + Sample Code
 
-// 6.1. Encapsulation
+//#region 6.1. Encapsulation
     // interfaces, public, private
     // It is also common to put an underscore (_) 
     // character at the start of property names to 
@@ -12,22 +12,21 @@
     // New! Class properties are public by default and can be examined or 
     // modified outside the class. There is however an experimental 
     // proposal to allow defining private class fields using a hash # prefix.
+
 class ClassWithPrivateField {
-    /** @private @const {!Bar} */
     #privateField = 10;
     #privateFieldUnused;
     publicField = 20;
     publicFieldUnused;
     _privateByConventionField;
-
     get privateField() {
         return this.#privateField;
     } 
 }
 let objectWithPrivateField = new ClassWithPrivateField ();
 
-console.log(objectWithPrivateField.privateField); // testing private field
-console.log(objectWithPrivateField.publicField);
+// console.log(objectWithPrivateField.privateField); // testing private field
+// console.log(objectWithPrivateField.publicField);
 
 class ClassWithPrivateMethod { 
     #privateMethod() { 
@@ -38,26 +37,26 @@ class ClassWithPrivateMethod {
 class ClassWithPrivateStaticField {
     static #PRIVATE_STATIC_FIELD
 }
-
-// 6.2. Methods
+//#endregion
+//#region 6.2. Methods
 
 // cat says meow
-// let cat = {};
-// cat.speaks = function() {
-//     console.log(`Cat says Meow`);
-// };
+let cat = {};
+cat.speaks = function() {
+    console.log(`Cat says Meow`);
+};
 // cat.speaks();
-
-// 6.3. Prototypes
+//#endregion
+//#region 6.3. Prototypes
 
 // console.log(Object.getPrototypeOf({}) ==
             // Object.prototype);
 // → true
 // console.log(Object.getPrototypeOf(Object.prototype)); 
 // → null
-
-// 6.4. Classes - do later
-// 6.5. Class notation
+//#endregion
+// 6.4. Classes - // todo
+//#region 6.5. Class notation
 // omitting class name - something peculiar, but not sure where to use it
 let object = new class { 
     getWord() { 
@@ -66,6 +65,6 @@ let object = new class {
 };
 // console.log(object.getWord()); 
 // → hello
-
+//#endregion
 // 6.6. Overriding derived properties
 
