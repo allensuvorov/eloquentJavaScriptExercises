@@ -66,5 +66,16 @@ let object = new class {
 // console.log(object.getWord()); 
 // → hello
 //#endregion
-// 6.6. Overriding derived properties
-
+//#region 6.6. Overriding derived properties
+Rabbit.prototype.teeth = "small";
+console.log(killerRabbit.teeth);
+// → small
+killerRabbit.teeth = "long, sharp, and bloody";
+console.log(killerRabbit.teeth);
+// → long, sharp, and bloody
+console.log(blackRabbit.teeth);
+// → small
+console.log(Rabbit.prototype.teeth);
+// → small
+//#endregion
+//#region 6.7. Maps
