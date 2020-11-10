@@ -57,6 +57,18 @@ cat.speaks = function() {
 //#endregion
 // 6.4. Classes - // todo
 //#region 6.5. Class notation
+class Rabbit {
+    constructor(type) {
+        this.type = type;
+    }
+    speak(line) {
+        console.log(`The ${this.type} rabbit says '${line}'`);
+    }
+}
+
+let killerRabbit = new Rabbit("killer");
+let blackRabbit = new Rabbit("black");
+
 // omitting class name - something peculiar, but not sure where to use it
 let object = new class { 
     getWord() { 
@@ -67,15 +79,41 @@ let object = new class {
 // → hello
 //#endregion
 //#region 6.6. Overriding derived properties
-Rabbit.prototype.teeth = "small";
-console.log(killerRabbit.teeth);
-// → small
-killerRabbit.teeth = "long, sharp, and bloody";
-console.log(killerRabbit.teeth);
-// → long, sharp, and bloody
-console.log(blackRabbit.teeth);
-// → small
-console.log(Rabbit.prototype.teeth);
-// → small
+
+// Rabbit.prototype.teeth = "small";
+// console.log(killerRabbit.teeth);
+// // → small
+// killerRabbit.teeth = "long, sharp, and bloody";
+// console.log(killerRabbit.teeth);
+// // → long, sharp, and bloody
+// console.log(blackRabbit.teeth);
+// // → small
+// console.log(Rabbit.prototype.teeth);
+// // → small
+
 //#endregion
 //#region 6.7. Maps
+
+// If you pass null to Object.create, 
+// the resulting object will not derive from Object.prototype 
+// and can safely be used as a map.
+// console.log("toString" in Object.create(null));
+// → false
+
+let ages = new Map();
+ages.set("Boris", 39);
+ages.set("Liang", 22);
+ages.set("Júlia", 62);
+ages.set("Allen", 39);
+
+// console.log(`Júlia is ${ages.get("Júlia")}`);
+// // → Júlia is 62
+// console.log("Is Jack's age known?", ages.has("Jack"));
+// // → Is Jack's age known? false
+// console.log(ages.has("toString"));
+// // → false
+
+// get keys just of this object, not of it's prototype 
+// console.log(Object.keys({x:1})); 
+
+//#endregion
