@@ -117,3 +117,11 @@ ages.set("Allen", 39);
 // console.log(Object.keys({x:1})); 
 
 //#endregion
+//#region 6.8. Polymorphism
+
+Rabbit.prototype.toString = function() { // assigning a new function for the method 
+    return `a ${this.type} rabbit`;
+};
+
+console.log(String(blackRabbit)); // String() constructor
+//#endregion
