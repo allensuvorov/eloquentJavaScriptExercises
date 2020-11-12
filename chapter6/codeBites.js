@@ -125,7 +125,7 @@ Rabbit.prototype.toString = function() { // assigning a new function for the met
 
 // console.log(String(blackRabbit)); // String() constructor
 //#endregion
-//#region Symbols
+//#region 6.9 Symbols
 /* When I claimed that property names are strings, that wasn’t entirely accurate. 
 They usually are, but they can also be symbols. 
 Symbols are values created with the Symbol function. 
@@ -137,6 +137,6 @@ console.log(sym == Symbol("name")); // can't recreate it
 let symCopy = sym; // can copy it
 console.log(symCopy == sym); 
 Rabbit.prototype[sym] = 55; // and can use it as a propetry name
-console.log(blackRabbit[sym]);
-
+console.log(blackRabbit[sym]); // -> 55
+console.log(sym); // -> Symbol(name)
 //#endregion 
