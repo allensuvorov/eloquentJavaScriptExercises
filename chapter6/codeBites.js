@@ -123,5 +123,20 @@ Rabbit.prototype.toString = function() { // assigning a new function for the met
     return `a ${this.type} rabbit`;
 };
 
-console.log(String(blackRabbit)); // String() constructor
+// console.log(String(blackRabbit)); // String() constructor
 //#endregion
+//#region Symbols
+/* When I claimed that property names are strings, that wasn’t entirely accurate. 
+They usually are, but they can also be symbols. 
+Symbols are values created with the Symbol function. 
+Unlike strings, newly created symbols are unique—
+you cannot create the same symbol twice.*/
+
+let sym = Symbol("name"); // create unique symbol sym
+console.log(sym == Symbol("name")); // can't recreate it
+let symCopy = sym; // can copy it
+console.log(symCopy == sym); 
+Rabbit.prototype[sym] = 55; // and can use it as a propetry name
+console.log(blackRabbit[sym]);
+
+//#endregion 
