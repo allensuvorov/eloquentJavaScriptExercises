@@ -139,4 +139,8 @@ console.log(symCopy == sym);
 Rabbit.prototype[sym] = 55; // and can use it as a propetry name
 console.log(blackRabbit[sym]); // -> 55
 console.log(sym); // -> Symbol(name)
-//#endregion 
+//#endregion
+//#region 6.10. The iterator interface
+/* The object given to a for/of loop is expected to be iterable. This means it has a method named with the Symbol.iterator symbol (a symbol value defined by the language, stored as a property of the Symbol function).*/
+
+//#endregion
