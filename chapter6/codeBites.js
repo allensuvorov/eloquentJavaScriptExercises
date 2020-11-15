@@ -186,3 +186,5 @@ class Matrix {
 }
 
 //#endregion
+//#region 6.11. Getters, setter, and statics
+//#endregion
