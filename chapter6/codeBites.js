@@ -158,6 +158,31 @@ let stringObject = {
 /* The object given to a for/of loop is expected to be iterable. This means it has a method named with the Symbol.iterator symbol (a symbol value defined by the language, stored as a property of the Symbol function).*/
 
 let okIterator = "OK"[Symbol.iterator]();
-console.log(okIterator.next());
+// console.log(okIterator.next());
+// console.log(okIterator.next());
+// console.log(okIterator.next());
+
+/* Let’s implement an iterable data structure. We’ll build a matrix class, acting as a two-dimensional array. */
+
+class Matrix {
+    constructor(width, height, element = (x,y) => undefined) {
+        this.width = width;
+        this.height = height;
+        this.content = [];
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                this.content[y * width + x] = element(x,y);
+            }
+        }
+    }
+
+    get(x, y) {
+        return this.content[y * this.width + x];
+    }
+    set(x, y, value) {
+        this.content[y * this.width + x] = value;
+    }
+}
 
 //#endregion
