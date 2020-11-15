@@ -144,17 +144,20 @@ const toStringSymbol = Symbol("toString");
 Array.prototype[toStringSymbol] = function () {
     return `${this.length} cm of blue yarn`
 }
-console.log([1,2].toString());
-console.log([1,2][toStringSymbol]());
+// console.log([1,2].toString());
+// console.log([1,2][toStringSymbol]());
 
 let stringObject = {
     [toStringSymbol]() { return "a jute rope"; }
 };
-console.log(stringObject[toStringSymbol]());
+// console.log(stringObject[toStringSymbol]());
 // → a jute rope
   
 //#endregion
 //#region 6.10. The iterator interface
 /* The object given to a for/of loop is expected to be iterable. This means it has a method named with the Symbol.iterator symbol (a symbol value defined by the language, stored as a property of the Symbol function).*/
+
+let okIterator = "OK"[Symbol.iterator]();
+console.log(okIterator.next());
 
 //#endregion
