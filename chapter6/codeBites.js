@@ -125,7 +125,7 @@ Rabbit.prototype.toString = function() { // assigning a new function for the met
 
 // console.log(String(blackRabbit)); // String() constructor
 //#endregion
-//#region 6.9 Symbols
+//#region 6.9. Symbols
 /* When I claimed that property names are strings, that wasn’t entirely accurate. 
 They usually are, but they can also be symbols. 
 Symbols are values created with the Symbol function. 
@@ -192,5 +192,11 @@ let varyingSize =  {
         return Math.floor(Math.random()*100);
     }
 };
-console.log(varyingSize.size);
+// console.log(varyingSize.size);
+
+class Temperature {
+    constructor(celsius) {
+        this.celsius = celsius; // all objects will have this parameter
+    }
+};
 //#endregion
