@@ -204,9 +204,15 @@ class Temperature {
     set fahrenheit(value) {
         this.celsius = (value - 32) / 1.8; // allows set temperature in fahrenheit (saved in celsius)
     }
+    static fromfahrenheit(value) {
+        return new Temperature((value - 32) / 1.8); // static method
+    }
 };
 
-let temp = new Temperature(22);
-console.log(temp.fahrenheit);
+let temp = new Temperature(22); // create object
+console.log(temp.fahrenheit); // get temperature converted to fahrenheit
+temp.fahrenheit = 86; // set temperature input fahrenheit -> saved in celsius
+console.log(temp.celsius); // get temp in celsius
+console.log(Temperature.fromfahrenheit(25));
 
 //#endregion
