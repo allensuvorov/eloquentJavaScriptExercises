@@ -210,9 +210,29 @@ class Temperature {
 };
 
 let temp = new Temperature(22); // create object
-console.log(temp.fahrenheit); // get temperature converted to fahrenheit
+// console.log(temp.fahrenheit); // get temperature converted to fahrenheit
 temp.fahrenheit = 86; // set temperature input fahrenheit -> saved in celsius
-console.log(temp.celsius); // get temp in celsius
-console.log(Temperature.fromfahrenheit(25));
+// console.log(temp.celsius); // get temp in celsius
+// console.log(Temperature.fromfahrenheit(25));
+//#endregion
+//#region 6.12. Inheritance
+class SymmericMatrix extends Matrix {
+    constructor(size, element = (x, y) => undefined) {
+        super(size, size, (x, y) => {
+            if (x < y) return element(y, x);
+            else return element(x, y);
+        });
+    }
+
+    set(x, y, value) {
+        super.set(x, y, value);
+        if (x != y) {
+            super.set(y, x, value);
+        }
+    }
+}
+
+let matrix = new SymmericMatrix(5, (x, y) => `${x},${y}`);
+console.log(matrix.get(2,3));
 
 //#endregion
