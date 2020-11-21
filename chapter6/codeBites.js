@@ -233,6 +233,13 @@ class SymmericMatrix extends Matrix {
 }
 
 let matrix = new SymmericMatrix(5, (x, y) => `${x},${y}`);
-console.log(matrix.get(2,3));
+// console.log(matrix.get(2,3));
 
+//#endregion
+//#region The instanceof operator
+console.log(new SymmericMatrix(2) instanceof SymmericMatrix);
+console.log(new SymmericMatrix(2) instanceof Matrix);
+console.log(new Matrix(2,2) instanceof SymmericMatrix);
+console.log([1] instanceof Array);
+console.log([2] instanceof Object);
 //#endregion
