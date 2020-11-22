@@ -27,7 +27,7 @@ class Vector {
         if (!(anotherVector instanceof Vector)) {
             throw new Error;      
         }
-        return new Vector(this.x + anotherVector.x, this.y + anotherVector.y);
+        return new Vector(this.x - anotherVector.x, this.y - anotherVector.y);
     };
 
     get length () {
@@ -36,4 +36,5 @@ class Vector {
 };
   
 console.log(new Vector(1, 2).plus(new Vector(2, 3)));
+console.log(new Vector(1, 2).minus(new Vector(2, 3)));
 console.log(`Length: ${new Vector(3, 4).length}`);
