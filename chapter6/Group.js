@@ -21,6 +21,7 @@ class Group {
 }
 
 let group = Group.from([10, 20]);
+console.log(group);
 console.log(group.has(10));
 // → true
 console.log(group.has(30));
@@ -29,3 +30,4 @@ group.add(10);
 group.delete(10);
 console.log(group.has(10));
 // → false
+console.log(group);
