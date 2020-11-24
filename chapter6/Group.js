@@ -11,7 +11,9 @@ class Group {
     delete(memberToDelete){
         this.members = this.members.filter(member => member !== memberToDelete)
     }
-    has(){}
+    has(member){
+        return this.members.includes(member);
+    }
     static from(array){
         return new Group;
     }
@@ -20,9 +22,9 @@ class Group {
 let group = new Group;
 group.add(10);
 group.add(10);
-console.log(group);
+console.log(group.has(10));
 group.delete(10);
-console.log(group);
+console.log(group.has(10));
 
 // let group = Group.from([10, 20]);
 // console.log(group.has(10));
