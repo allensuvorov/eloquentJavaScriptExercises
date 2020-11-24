@@ -1,18 +1,31 @@
 class Group {
-    // Your code here.
-    constructor(){}
-    set(){}
-    add(){}
+    // constructor(){
+    //     this.members = []; // why put it into constructor?
+    // }
+    members = [];
+    add(newMember){
+        if (!this.members.includes(newMember)) {
+            this.members.push(newMember);
+        }
+    }
     delete(){}
-    static from(){}
+    has(){}
+    static from(array){
+        return new Group;
+    }
 }
 
-let group = Group.from([10, 20]);
-console.log(group.has(10));
-// → true
-console.log(group.has(30));
-// → false
+let group = new Group;
 group.add(10);
-group.delete(10);
-console.log(group.has(10));
-// → false
+group.add(10);
+console.log(group);
+
+// let group = Group.from([10, 20]);
+// console.log(group.has(10));
+// // → true
+// console.log(group.has(30));
+// // → false
+// group.add(10);
+// group.delete(10);
+// console.log(group.has(10));
+// // → false
