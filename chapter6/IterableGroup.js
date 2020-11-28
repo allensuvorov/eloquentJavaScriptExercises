@@ -20,6 +20,11 @@ class Group {
     }
 }
 
+class GroupIterator {
+    constructor(Group) {
+        
+    }
+}
 for (let value of Group.from(["a", "b", "c"]).members) {
     console.log(value);
   }
