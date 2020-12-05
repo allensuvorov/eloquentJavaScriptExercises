@@ -31,3 +31,26 @@ function buildGraph(edges) {
 }
 
 const roadGraph = buildGraph(roads);
+
+// let’s condense the village’s state down to the minimal set of values that define it. There’s the robot’s current location and the collection of undelivered parcels, each of which has a current location and a destination address. That’s it.
+
+class VillageState {
+    constructor(place, parcels) {
+        this.place = place;
+        this.parcels = parcels;
+    }
+
+    move(destination) {
+        // check whether there is a road from current to destination
+        if (!roadGraph[this.place].includes(destination)) {
+            return this; // if no direct road return current
+        // if there is a road
+        } else {
+            let parcels = this.parcels.map(p => {
+                if (p.place != this.place) return p;
+                return {place: destination, address: p.address};
+            }).filter(p => p.place != p.address);
+            return new VillageState(destination, parcels);
+        }
+    }
+}
