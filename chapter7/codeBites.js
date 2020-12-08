@@ -1,3 +1,4 @@
+//#region The task
 // Our project in this chapter is to build an automaton, a little program that performs a task in a virtual world. Our automaton will be a mail-delivery robot picking up and dropping off parcels.
 
 // array of roads: 11 places with 14 roads between them
@@ -61,6 +62,13 @@ let first = new VillageState(
 );
 let next = first.move("Alice's House");
 
-console.log(next.place);
-console.log(next.parcels);
-console.log(first.place);
+// console.log(next.place);
+// console.log(next.parcels);
+// console.log(first.place);
+//#endregion
+
+//#region Persistent data
+let object = Object.freeze({value: 5});
+object.value = 10;
+console.log(object.value);
+//#endregion
