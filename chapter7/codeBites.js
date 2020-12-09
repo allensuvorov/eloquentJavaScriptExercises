@@ -70,5 +70,22 @@ let next = first.move("Alice's House");
 //#region Persistent data
 let object = Object.freeze({value: 5});
 object.value = 10;
-console.log(object.value);
+// console.log(object.value);
+
+// This is about complexity management again. When the objects in my system are fixed, stable things, I can consider operations on them in isolation—moving to Alice’s house from a given start state always produces the same new state. When objects change over time, that adds a whole new dimension of complexity to this kind of reasoning.
 //#endregion
+
+//#region Simulation
+
+function runRobot(state, robot, memory) {
+    for (let turn = 0;; turn++) {
+        if (state.parcels.length == 0) {
+            console.log(`Done in ${turn} turns`);
+            break;
+        }
+        let action = robot(state, memory);
+        state = state.move(action.direction);
+        memory = action.memory;
+        console.log(`Moved to ${action.direction}`);
+    }
+}
