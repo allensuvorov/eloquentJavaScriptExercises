@@ -1,7 +1,6 @@
 //#region The task
 // Our project in this chapter is to build an automaton, a little program that performs a task in a virtual world. Our automaton will be a mail-delivery robot picking up and dropping off parcels.
 
-// array of roads: 11 places with 14 roads between them
 const roads = [
     "Alice's House-Bob's House",   "Alice's House-Cabin",
     "Alice's House-Post Office",   "Bob's House-Town Hall",
@@ -11,8 +10,6 @@ const roads = [
     "Marketplace-Post Office",     "Marketplace-Shop",
     "Marketplace-Town Hall",       "Shop-Town Hall"
 ];
-
-// Let’s convert the list of roads to a data structure that, for each place, tells us what can be reached from there.
 
 function buildGraph(edges) {
     let graph = Object.create(null);
@@ -32,8 +29,6 @@ function buildGraph(edges) {
 }
 
 const roadGraph = buildGraph(roads);
-
-// let’s condense the village’s state down to the minimal set of values that define it. There’s the robot’s current location and the collection of undelivered parcels, each of which has a current location and a destination address. That’s it.
 
 class VillageState {
     constructor(place, parcels) {
@@ -62,9 +57,6 @@ let first = new VillageState(
 );
 let next = first.move("Alice's House");
 
-// console.log(next.place);
-// console.log(next.parcels);
-// console.log(first.place);
 //#endregion
 
 //#region Persistent data
@@ -97,5 +89,18 @@ function randomPick(array) {
 
 function randomRobot(state) {
     return {direction: randomPick([state.place])};
+}
+
+VillageState.random = function(parcelCount = 5) {
+    let parcels = [];
+    for (let i = 0; i < parcelCount; i++) {
+        let address = randomPick(Object.keys(roadGraph));
+        let place;
+        do {
+            place = randomPick(Object.keys(roadGraph));
+        } while (place == address);
+        parcels.push({place.address});
+    }
+    return new VillageState("Post Office", parcels);
 }
 //#endregion
