@@ -83,7 +83,7 @@ function runRobot(state, robot, memory) {
 }
 
 function randomPick(array) {
-    let choice = Math.floor(Math.randon() * array.length);
+    let choice = Math.floor(Math.random() * array.length);
     return array[choice];
 }
 
@@ -99,8 +99,10 @@ VillageState.random = function(parcelCount = 5) {
         do {
             place = randomPick(Object.keys(roadGraph));
         } while (place == address);
-        parcels.push({place.address});
+        parcels.push({place, address});
     }
     return new VillageState("Post Office", parcels);
 }
+
+runRobot(VillageState.random(), randomRobot);
 //#endregion
