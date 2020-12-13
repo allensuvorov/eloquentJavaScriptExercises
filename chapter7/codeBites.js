@@ -105,4 +105,5 @@ VillageState.random = function(parcelCount = 5) {
 }
 
 runRobot(VillageState.random(), randomRobot);
+// why is it returning "moved to post office" cycled up?
 //#endregion
