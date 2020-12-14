@@ -90,7 +90,8 @@ function randomPick(array) {
 function randomRobot(state) {
     return {direction: randomPick([state.place])};
 }
-
+//To put this sophisticated robot to work, we’ll first need a way to create a new state with some parcels.
+// this function is returning new state with current place and a random array of parcels (point A and B)
 VillageState.random = function(parcelCount = 5) {
     let parcels = [];
     for (let i = 0; i < parcelCount; i++) {
@@ -101,9 +102,11 @@ VillageState.random = function(parcelCount = 5) {
         } while (place == address);
         parcels.push({place, address});
     }
+    console.log(parcels);
     return new VillageState("Post Office", parcels);
 }
 
 runRobot(VillageState.random(), randomRobot);
+
 // why is it returning "moved to post office" cycled up?
 //#endregion
