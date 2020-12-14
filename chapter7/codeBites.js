@@ -70,7 +70,7 @@ object.value = 10;
 //#region Simulation
 
 function runRobot(state, robot, memory) {
-    for (let turn = 0;; turn++) {
+    for (let turn = 0; turn < 5; turn++) {
         if (state.parcels.length == 0) {
             console.log(`Done in ${turn} turns`);
             break;
@@ -102,7 +102,7 @@ VillageState.random = function(parcelCount = 5) {
         } while (place == address);
         parcels.push({place, address});
     }
-    console.log(parcels);
+    console.table(parcels);
     return new VillageState("Post Office", parcels);
 }
 
