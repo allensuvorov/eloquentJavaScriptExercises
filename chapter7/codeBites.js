@@ -70,7 +70,7 @@ object.value = 10;
 //#region Simulation
 
 function runRobot(state, robot, memory) {
-    for (let turn = 0; turn < 5; turn++) {
+    for (let turn = 0;; turn++) {
         if (state.parcels.length == 0) {
             console.log(`Done in ${turn} turns`);
             break;
@@ -88,7 +88,7 @@ function randomPick(array) {
 }
 
 function randomRobot(state) {
-    return {direction: randomPick([state.place])};
+    return {direction: randomPick(roadGraph[state.place])};
 }
 //To put this sophisticated robot to work, we’ll first need a way to create a new state with some parcels.
 // this function is returning new state with current place and a random array of parcels (point A and B)
