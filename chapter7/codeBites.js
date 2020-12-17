@@ -106,7 +106,24 @@ VillageState.random = function(parcelCount = 5) {
     return new VillageState("Post Office", parcels);
 }
 
-runRobot(VillageState.random(), randomRobot);
+// runRobot(VillageState.random(), randomRobot);
 
-// why is it returning "moved to post office" cycled up?
+//#endregion
+
+//#region The mail truck’s route
+
+const mailRoute = [
+    "Alice's House", "Cabin", "Alice's House", "Bob's House",
+    "Town Hall", "Daria's House", "Ernie's House",
+    "Grete's House", "Shop", "Grete's House", "Farm",
+    "Marketplace", "Post Office"
+];
+
+function routeRobot(state, memory) {
+    if (memory.length == 0) {
+        memory = mailRoute
+    }
+    return {direction: memory[0], memory: memory.slice(1)};
+}
+runRobot(VillageState.random(), routeRobot, []);
 //#endregion
