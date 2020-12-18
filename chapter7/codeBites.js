@@ -73,7 +73,7 @@ function runRobot(state, robot, memory) {
     for (let turn = 0;; turn++) {
         if (state.parcels.length == 0) {
             console.log(`Done in ${turn} turns`);
-            break;
+            break; // break when parcels list is empty
         }
         let action = robot(state, memory);
         state = state.move(action.direction);
@@ -122,8 +122,8 @@ const mailRoute = [
 function routeRobot(state, memory) {
     if (memory.length == 0) {
         memory = mailRoute
-    }
-    return {direction: memory[0], memory: memory.slice(1)};
+    } // if memory is empty - push initial route in it
+    return {direction: memory[0], memory: memory.slice(1)}; // return object with {first place, and put the rest of routes to memory}
 }
 runRobot(VillageState.random(), routeRobot, []);
 //#endregion
