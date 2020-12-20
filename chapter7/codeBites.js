@@ -131,10 +131,10 @@ runRobot(VillageState.random(), routeRobot, []);
 //#region Pathfinding
 
 function findRoute(graph, from, to) {
-    let work = [{at: from, route: []}];
+    let work = [{at: from, route: []}]; // array with objects (visits)
     for (let i = 0; i < work.length; i++) {
         let {at, route} = work[i];
-        for (let place of graph[i]){
+        for (let place of graph[at]){
             if (place == to) return route.concat(place);
             if (!work.some(w => w.at == place)) {
                 work.push({at:place, route: route.concat(place)});
