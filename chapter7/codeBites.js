@@ -25,7 +25,7 @@ function buildGraph(edges) {
         addEdge(from, to);
         addEdge(to, from);
     }
-    return graph;
+    return graph; // object of pairs key = "from" and value = "to"
 }
 
 const roadGraph = buildGraph(roads);
@@ -130,14 +130,21 @@ runRobot(VillageState.random(), routeRobot, []);
 
 //#region Pathfinding
 
-function findRoute(graph, from, to) {
-    let work = [{at: from, route: []}]; // array with objects (visits)
-    for (let i = 0; i < work.length; i++) {
-        let {at, route} = work[i];
-        for (let place of graph[at]){
+function findRoute(graph, from, to) { // passed: graph object with from-to pairs
+    let work = [{at: from, route: []}]; 
+    // array of objects (visits to explore next)
+    // objects with: "from" place and route (empty array)
+
+    for (let i = 0; i < work.length; i++) { // go till lengh of work array
+        let {at, route} = work[i]; // put the i-object from work array to pair of "at" and "route" 
+        for (let place of graph[at]){ //iterate all destinations with direct road from the current place in graph  
             if (place == to) return route.concat(place);
-            if (!work.some(w => w.at == place)) {
+            // if destination equals point B than return array of places plus that finishing one
+            if (!work.some(w => w.at == place)) 
+            // if where we need to go is non of any origins in the visits (we have not visited it)
+            {
                 work.push({at:place, route: route.concat(place)});
+                // add a visit object (set distinaton current as location and add it to the route  
             }
         }
     }
