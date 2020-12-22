@@ -151,4 +151,7 @@ function findRoute(graph, from, to) { // passed: graph object with from-to pairs
 }
 
 // The exploring has to be done in the right order—the places that were reached first have to be explored first. We can’t immediately explore a place as soon as we reach it because that would mean places reached from there would also be explored immediately, and so on, even though there may be other, shorter paths that haven’t yet been explored.
+
+// Therefore, the function keeps a work list. This is an array of places that should be explored next, along with the route that got us there. It starts with just the start position and an empty route.
+
 //#endregion
