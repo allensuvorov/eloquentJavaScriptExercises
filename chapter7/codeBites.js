@@ -130,27 +130,29 @@ runRobot(VillageState.random(), routeRobot, []);
 
 //#region Pathfinding
 
-function findRoute(graph, from, to) { // passed: graph object with from-to pairs
-    let work = [{at: from, route: []}]; 
+// passed: graph object with from-to pairs
+function findRoute(graph, from, to) { 
     // array of objects (visits to explore next)
     // objects with: "from" place and route (empty array)
-
-    for (let i = 0; i < work.length; i++) { // go till lengh of work array
-        let {at, route} = work[i]; // put the i-object from work array to pair of "at" and "route" 
-        for (let place of graph[at]){ //iterate all destinations with direct road from the current place in graph  
-            if (place == to) return route.concat(place);
+    let work = [{at: from, route: []}]; 
+    // go till lengh of work array
+    for (let i = 0; i < work.length; i++) { 
+        // put the i-object from work array to pair of "at" and "route" 
+        let {at, route} = work[i]; 
+        //iterate all destinations with direct road from the current place in graph  
+        for (let place of graph[at]){ 
             // if destination equals point B than return array of places plus that finishing one
-            if (!work.some(w => w.at == place)) 
+            if (place == to) return route.concat(place);
             // if where we need to go is non of any origins in the visits (we have not visited it)
+            if (!work.some(w => w.at == place)) 
             {
-                work.push({at:place, route: route.concat(place)});
                 // add a visit object (set distinaton current as location and add it to the route  
+                work.push({at:place, route: route.concat(place)});
             }
         }
     }
 }
 
-// The exploring has to be done in the right order—the places that were reached first have to be explored first. We can’t immediately explore a place as soon as we reach it because that would mean places reached from there would also be explored immediately, and so on, even though there may be other, shorter paths that haven’t yet been explored.
 
 // Therefore, the function keeps a work list. This is an array of places that should be explored next, along with the route that got us there. It starts with just the start position and an empty route.
 
