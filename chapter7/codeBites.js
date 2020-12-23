@@ -30,6 +30,8 @@ function buildGraph(edges) {
 
 const roadGraph = buildGraph(roads);
 
+console.log(roadGraph['Marketplace']);
+
 class VillageState {
     constructor(place, parcels) {
         this.place = place;
@@ -125,28 +127,31 @@ function routeRobot(state, memory) {
     } // if memory is empty - push initial route in it
     return {direction: memory[0], memory: memory.slice(1)}; // return object with {first place, and put the rest of routes to memory}
 }
-runRobot(VillageState.random(), routeRobot, []);
+// runRobot(VillageState.random(), routeRobot, []);
 //#endregion
 
 //#region Pathfinding
 
-// passed: graph object with from-to pairs
+// passed: graph object with {from:to} pairs
 function findRoute(graph, from, to) { 
-    // array of objects (visits to explore next)
-    // objects with: "from" place and route (empty array)
+    // array of objects (visits history + visits plan)
+    // objects with: "from" place and route
     let work = [{at: from, route: []}]; 
+    
     // go till lengh of work array
     for (let i = 0; i < work.length; i++) { 
         // put the i-object from work array to pair of "at" and "route" 
         let {at, route} = work[i]; 
-        //iterate all destinations with direct road from the current place in graph  
+        
+        //iterate all destinations with direct road from the current place in graph
+        // graph[at] returns an array of values for that key
         for (let place of graph[at]){ 
             // if destination equals point B than return array of places plus that finishing one
             if (place == to) return route.concat(place);
             // if where we need to go is non of any origins in the visits (we have not visited it)
             if (!work.some(w => w.at == place)) 
             {
-                // add a visit object (set distinaton current as location and add it to the route  
+                // add a visit object (save place and add it to the route)
                 work.push({at:place, route: route.concat(place)});
             }
         }
