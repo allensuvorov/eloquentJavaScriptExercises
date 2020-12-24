@@ -77,6 +77,7 @@ function runRobot(state, robot, memory) {
             console.log(`Done in ${turn} turns`);
             break; // break when parcels list is empty
         }
+        console.log(memory);
         let action = robot(state, memory);
         state = state.move(action.direction);
         memory = action.memory;
@@ -158,7 +159,17 @@ function findRoute(graph, from, to) {
     }
 }
 
+function goalOrientedRobot({place, parcels}, route) {
+    if (route.length == 0) {
+        let parcel = parcels[0];
+        if (parcel.place != place) {
+            route = findRoute(roadGraph, place, parcel.place);
+        } else {
+            route = findRoute(roadGraph, place, parcel.address);
+        }
+    }
+    return {direction: route[0], memory: route.slice(1)};
+}
 
-// Therefore, the function keeps a work list. This is an array of places that should be explored next, along with the route that got us there. It starts with just the start position and an empty route.
-
+runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
