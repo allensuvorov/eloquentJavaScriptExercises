@@ -173,3 +173,13 @@ function goalOrientedRobot({place, parcels}, route) {
 
 runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
+
+//#region Exercise: Measuring a robot
+
+function compareRobots(robot1, memory1, robot2, memory2) {
+
+}
+
+compareRobots(routeRobot, [], goalOrientedRobot, []);
+
+//#endregion
