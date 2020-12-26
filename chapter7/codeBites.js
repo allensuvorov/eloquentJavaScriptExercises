@@ -176,6 +176,10 @@ runRobot(VillageState.random(), goalOrientedRobot, []);
 
 //#region Exercise: Measuring a robot
 
+Measuring a robot
+
+// It’s hard to objectively compare robots by just letting them solve a few scenarios. Maybe one robot just happened to get easier tasks or the kind of tasks that it is good at, whereas the other didn’t.
+
 function compareRobots(robot1, memory1, robot2, memory2) {
 
 }
