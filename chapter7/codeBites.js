@@ -123,11 +123,13 @@ const mailRoute = [
 ];
 
 function routeRobot(state, memory) {
+    // if memory is empty - push initial route in it
     if (memory.length == 0) {
         memory = mailRoute
-    } // if memory is empty - push initial route in it
-    return {direction: memory[0], memory: memory.slice(1)}; // return object with {first place, and put the rest of routes to memory}
-}
+    }
+    // return object with {first place, and put the rest of routes to memory}
+    return {direction: memory[0], memory: memory.slice(1)}; 
+}   
 // runRobot(VillageState.random(), routeRobot, []);
 //#endregion
 
@@ -180,7 +182,10 @@ runRobot(VillageState.random(), goalOrientedRobot, []);
 
 function compareRobots(robot1, memory1, robot2, memory2)    
 {
-// will it generate a random state for each task or use one same state for all 100 tasks? 
+// will it generate a random state for each task or use one same state for all 100 tasks? - let's use one state
+// generate a state
+let state = VillageState.random();
+
 }
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
