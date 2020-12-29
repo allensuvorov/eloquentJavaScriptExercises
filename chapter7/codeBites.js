@@ -105,7 +105,7 @@ VillageState.random = function(parcelCount = 5) {
         } while (place == address);
         parcels.push({place, address});
     }
-    console.table(parcels);
+    // console.table(parcels);
     return new VillageState("Post Office", parcels);
 }
 
@@ -173,7 +173,7 @@ function goalOrientedRobot({place, parcels}, route) {
     return {direction: route[0], memory: route.slice(1)};
 }
 
-runRobot(VillageState.random(), goalOrientedRobot, []);
+// runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
 
 //#region Exercise: Measuring a robot
@@ -182,10 +182,12 @@ runRobot(VillageState.random(), goalOrientedRobot, []);
 
 function compareRobots(robot1, memory1, robot2, memory2)    
 {
-// will it generate a random state for each task or use one same state for all 100 tasks? - let's use one state
-// generate a state
-let state = VillageState.random();
-
+let task = [];
+// generate a 100 tasks (parcels = arrays of objects)
+    for (let i = 0; i < 100; i++){
+        task[i] = VillageState.random();
+        console.table(task[i].parcels);
+    }
 }
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
