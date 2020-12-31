@@ -181,14 +181,32 @@ function goalOrientedRobot({place, parcels}, route) {
 // Write a function "compareRobots" that takes two robots (and their starting memory). It should generate 100 tasks and let each of the robots solve each of these tasks. When done, it should output the average number of steps each robot took per task.
 
 function compareRobots(robot1, memory1, robot2, memory2){
-    // create an array to store tasks
-    let task = [];
-// generate a 100 tasks (parcels = arrays of objects)
+    // declare counters for robot1 results and robot2 results
+    let r1r = 0;
+    let r2r = 0;
+    
+    // loop will generate tasks and feed them to robots
     for (let i = 0; i < 100; i++){
-        task[i] = VillageState.random();
-        console.table(task[i].parcels);
+        let task = VillageState.random();
+        // run robot1 -> r1turns
+        r1turns
+        // run robot2 -> r2turns
+        
     }
-// show robot1 results and robot2 results
+    // r1r = r1turns/100;
+    // r2r = r2turns/100;
+
+
+    // // create an array to store tasks
+    // let tasks = [];
+    // // generate a 100 tasks (parcels = arrays of objects)
+    // for (let i = 0; i < 100; i++){
+    //     tasks[i] = VillageState.random();
+    //     // console.table(tasks[i].parcels);
+    // }
+    
+}
+    // show robot1 results and robot2 results
     console.log(r1r, r2r)
 
 }
