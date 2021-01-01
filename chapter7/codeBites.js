@@ -30,7 +30,7 @@ function buildGraph(edges) {
 
 const roadGraph = buildGraph(roads);
 
-console.log(roadGraph['Marketplace']);
+// console.log(roadGraph['Marketplace']);
 
 class VillageState {
     constructor(place, parcels) {
@@ -187,27 +187,35 @@ function compareRobots(robot1, memory1, robot2, memory2){
     
     // loop will generate tasks and feed them to robots
     for (let i = 0; i < 100; i++){
-        let task = VillageState.random();
-        // run robot1 -> turns
-        r1turns += turns;
-        // run robot2 -> turns
-        r2turns += turns;
-    }
-    console.log (r1turns/100, r2turns/100);
+        let state = VillageState.random();
+        task1 = state;
+        task2 = state;
+        // run robot1 -> r1turns + turn
+        for (let turn = 0;; turn++){
+            if (task1.parcels.length == 0) {
+                r1turns += turn;
+                break;
+            }
+            let action = robot1(task1, memory1);
+            task1 = task1.move(action.direction);
+            memory1 = action.memory;
+        }
 
-    // create an array to store tasks
-    // let tasks = [];
-    // // generate a 100 tasks (parcels = arrays of objects)
-    // for (let i = 0; i < 100; i++){
-    //     tasks[i] = VillageState.random();
-    //     // console.table(tasks[i].parcels);
-    // }
+        // run robot2 -> r1turns + turn
+        for (let turn = 0;; turn++){
+            if (task2.parcels.length == 0) {
+                r2turns += turn;
+                break;
+            }
+            let action = robot2(task2, memory2);
+            task2 = task2.move(action.direction);
+            memory2 = action.memory;
+        }
+    }
+    console.log("routeRobot result: ", r1turns/100, "goalOrientedRobot result: ", r2turns/100);
     
 }
-    // show robot1 results and robot2 results
-    console.log(r1r, r2r)
 
-}
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
 
