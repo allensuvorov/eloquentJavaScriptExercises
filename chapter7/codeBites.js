@@ -182,22 +182,20 @@ function goalOrientedRobot({place, parcels}, route) {
 
 function compareRobots(robot1, memory1, robot2, memory2){
     // declare counters for robot1 results and robot2 results
-    let r1r = 0;
-    let r2r = 0;
+    let r1turns = 0;
+    let r2turns = 0;
     
     // loop will generate tasks and feed them to robots
     for (let i = 0; i < 100; i++){
         let task = VillageState.random();
-        // run robot1 -> r1turns
-        r1turns
-        // run robot2 -> r2turns
-        
+        // run robot1 -> turns
+        r1turns += turns;
+        // run robot2 -> turns
+        r2turns += turns;
     }
-    // r1r = r1turns/100;
-    // r2r = r2turns/100;
+    console.log (r1turns/100, r2turns/100);
 
-
-    // // create an array to store tasks
+    // create an array to store tasks
     // let tasks = [];
     // // generate a 100 tasks (parcels = arrays of objects)
     // for (let i = 0; i < 100; i++){
