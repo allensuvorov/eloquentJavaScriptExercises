@@ -220,3 +220,9 @@ function compareRobots(robot1, memory1, robot2, memory2){
 compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 //#endregion
+
+//#region Robot efficiency
+
+// Can you write a robot that finishes the delivery task faster than goalOrientedRobot?
+
+//#endregion
