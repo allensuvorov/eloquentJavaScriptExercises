@@ -162,15 +162,18 @@ function findRoute(graph, from, to) {
 }
 
 function goalOrientedRobot({place, parcels}, route) {
-    if (route.length == 0) {
-        let parcel = parcels[0];
-        if (parcel.place != place) {
-            route = findRoute(roadGraph, place, parcel.place);
-        } else {
-            route = findRoute(roadGraph, place, parcel.address);
-        }
-    }
-    return {direction: route[0], memory: route.slice(1)};
+    
+    // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
+
+    // if (route.length == 0) {
+    //     let parcel = parcels[0];
+    //     if (parcel.place != place) {
+    //         route = findRoute(roadGraph, place, parcel.place);
+    //     } else {
+    //         route = findRoute(roadGraph, place, parcel.address);
+    //     }
+    // }
+    // return {direction: route[0], memory: route.slice(1)};
 }
 
 // runRobot(VillageState.random(), goalOrientedRobot, []);
@@ -217,7 +220,7 @@ function compareRobots(robot1, memory1, robot2, memory2){
 }
 
 
-compareRobots(routeRobot, [], goalOrientedRobot, []);
+// compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 //#endregion
 
@@ -225,4 +228,17 @@ compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 // Can you write a robot that finishes the delivery task faster than goalOrientedRobot?
 
+function improvedRobot({place, parcels}, route) {
+    if (route.length == 0) {
+        let parcel = parcels[0];
+        if (parcel.place != place) {
+            route = findRoute(roadGraph, place, parcel.place);
+        } else {
+            route = findRoute(roadGraph, place, parcel.address);
+        }
+    }
+    return {direction: route[0], memory: route.slice(1)};
+}
+
+compareRobots(goalOrientedRobot, [], improvedRobot, []);
 //#endregion
