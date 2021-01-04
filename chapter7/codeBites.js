@@ -135,7 +135,7 @@ function routeRobot(state, memory) {
 
 //#region Pathfinding
 
-// passed: graph object with {from:to} pairs
+// passed: graph (object) with {from:to} pairs
 function findRoute(graph, from, to) { 
     // array of objects (visits history + visits plan)
     // objects with: "from" place and route
@@ -162,26 +162,21 @@ function findRoute(graph, from, to) {
 }
 
 function goalOrientedRobot({place, parcels}, route) {
-    
-    // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
-
-    // if (route.length == 0) {
-    //     let parcel = parcels[0];
-    //     if (parcel.place != place) {
-    //         route = findRoute(roadGraph, place, parcel.place);
-    //     } else {
-    //         route = findRoute(roadGraph, place, parcel.address);
-    //     }
-    // }
-    // return {direction: route[0], memory: route.slice(1)};
+    if (route.length == 0) {
+        let parcel = parcels[0];
+        if (parcel.place != place) {
+            route = findRoute(roadGraph, place, parcel.place);
+        } else {
+            route = findRoute(roadGraph, place, parcel.address);
+        }
+    }
+    return {direction: route[0], memory: route.slice(1)};
 }
 
 // runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
 
 //#region Exercise: Measuring a robot
-
-// Write a function "compareRobots" that takes two robots (and their starting memory). It should generate 100 tasks and let each of the robots solve each of these tasks. When done, it should output the average number of steps each robot took per task.
 
 function compareRobots(robot1, memory1, robot2, memory2){
     // declare counters for robot1 results and robot2 results
@@ -219,7 +214,6 @@ function compareRobots(robot1, memory1, robot2, memory2){
     
 }
 
-
 // compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 //#endregion
@@ -229,6 +223,8 @@ function compareRobots(robot1, memory1, robot2, memory2){
 // Can you write a robot that finishes the delivery task faster than goalOrientedRobot?
 
 function improvedRobot({place, parcels}, route) {
+    // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
+
     if (route.length == 0) {
         let parcel = parcels[0];
         if (parcel.place != place) {
