@@ -160,20 +160,27 @@ function findRoute(graph, from, to) {
         }
     }
 }
-
+// builds a route for given a starting point, and a set of parcels
 function goalOrientedRobot({place, parcels}, route) {
+    // if route is empty
     if (route.length == 0) {
+        // let's work on the first parcel
         let parcel = parcels[0];
+        // if that parcel's location is not starting point
         if (parcel.place != place) {
+            // find route to that location
             route = findRoute(roadGraph, place, parcel.place);
+            // if it is
         } else {
+            // find route to the destination of the parcel
             route = findRoute(roadGraph, place, parcel.address);
         }
     }
+    // return {first place of the route, and a list with the rest of the route}
     return {direction: route[0], memory: route.slice(1)};
 }
 
-// runRobot(VillageState.random(), goalOrientedRobot, []);
+runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
 
 //#region Exercise: Measuring a robot
@@ -224,17 +231,7 @@ function compareRobots(robot1, memory1, robot2, memory2){
 
 function improvedRobot({place, parcels}, route) {
     // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
-
-    if (route.length == 0) {
-        let parcel = parcels[0];
-        if (parcel.place != place) {
-            route = findRoute(roadGraph, place, parcel.place);
-        } else {
-            route = findRoute(roadGraph, place, parcel.address);
-        }
-    }
-    return {direction: route[0], memory: route.slice(1)};
-}
+    // refreshing how the goalOrientedRobot works
 
 compareRobots(goalOrientedRobot, [], improvedRobot, []);
 //#endregion
