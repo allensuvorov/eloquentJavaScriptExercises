@@ -232,6 +232,7 @@ function compareRobots(robot1, memory1, robot2, memory2){
 function improvedRobot({place, parcels}, route) {
     // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
     // refreshing how the goalOrientedRobot works
+    // merged main to chapter7
 
 compareRobots(goalOrientedRobot, [], improvedRobot, []);
 //#endregion
