@@ -71,15 +71,23 @@ object.value = 10;
 
 //#region Simulation
 
+// runs the robot with given state and memory
 function runRobot(state, robot, memory) {
+    // loop without condition and count turns
     for (let turn = 0;; turn++) {
+        // if no more parcels do deliver
         if (state.parcels.length == 0) {
             console.log(`Done in ${turn} turns`);
-            break; // break when parcels list is empty
+            // break when parcels list is empty
+            break; 
         }
         console.log(memory);
+        // action points to an object returned by robot 
+        // - {at: first place of the route, and memory: a list with the rest of the route}
         let action = robot(state, memory);
+        // state is updated with move to destination
         state = state.move(action.direction);
+        // memory is updated as well
         memory = action.memory;
         console.log(`Moved to ${action.direction}`);
     }
