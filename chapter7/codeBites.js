@@ -25,12 +25,13 @@ function buildGraph(edges) {
         addEdge(from, to);
         addEdge(to, from);
     }
-    return graph; // object of pairs key = "from" and value = "to"
+    return graph; // object with {from: [to1, to2, to3]
 }
 
 const roadGraph = buildGraph(roads);
 
 // console.log(roadGraph['Marketplace']);
+// console.log(roadGraph);
 
 class VillageState {
     constructor(place, parcels) {
@@ -188,7 +189,7 @@ function goalOrientedRobot({place, parcels}, route) {
     return {direction: route[0], memory: route.slice(1)};
 }
 
-runRobot(VillageState.random(), goalOrientedRobot, []);
+// runRobot(VillageState.random(), goalOrientedRobot, []);
 //#endregion
 
 //#region Exercise: Measuring a robot
@@ -237,10 +238,10 @@ function compareRobots(robot1, memory1, robot2, memory2){
 
 // Can you write a robot that finishes the delivery task faster than goalOrientedRobot?
 
-function improvedRobot({place, parcels}, route) {
+// function improvedRobot({place, parcels}, route) {
     // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
     // refreshing how the goalOrientedRobot works
     // merged main to chapter7
 
-compareRobots(goalOrientedRobot, [], improvedRobot, []);
+// compareRobots(goalOrientedRobot, [], improvedRobot, []);
 //#endregion
