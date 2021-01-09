@@ -10,19 +10,29 @@ const roads = [
     "Marketplace-Post Office",     "Marketplace-Shop",
     "Marketplace-Town Hall",       "Shop-Town Hall"
 ];
-
+// argument - build a graph from an array of strings "from-to"
+// the graph will have for each place a list of places with a direct road to them. 
 function buildGraph(edges) {
+    // create a clean object with no methods
     let graph = Object.create(null);
+    // add function that will take the FROMs and TOs (with we extract later) 
     function addEdge(from, to) {
+        // if this FROM is new for our graph
         if (graph[from] == null) {
+            // create a pair with key = FROM and value - array with this TO - [to] 
             graph[from] = [to];
         } else {
+            // else (meaning this FROM is already in the object) push this TO to the array of that FROM
             graph[from].push(to);
         }
     }
+    // map function splits each road string by "-" into and array of smaller arrays contaning [from, to] 
+    // iterate the main array of roads
+    // deconstruct the FROM and TO and iterate both 
     for (let [from, to] of edges.map(r => r.split("-"))) {
-        // console.log(from, "-", to)
+        // add that [FROM, TO] pare to the graph
         addEdge(from, to);
+        // add it the other way [to, from] as well, because it's possibe to travel that way also
         addEdge(to, from);
     }
     return graph; // object with {from: [to1, to2, to3]
@@ -40,7 +50,7 @@ class VillageState {
     }
 
     move(destination) {
-        // check whether there is a road from current to destination
+        // check if there is a road from current to destination
         if (!roadGraph[this.place].includes(destination)) {
             return this; // if no direct road return current
         // if there is a road
