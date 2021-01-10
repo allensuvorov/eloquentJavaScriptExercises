@@ -246,12 +246,15 @@ function compareRobots(robot1, memory1, robot2, memory2){
 
 //#region Robot efficiency
 
+
 // Can you write a robot that finishes the delivery task faster than goalOrientedRobot?
 
-// function improvedRobot({place, parcels}, route) {
-    // compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
-    // refreshing how the goalOrientedRobot works
-    // merged main to chapter7
+function improvedRobot({place, parcels}, route) {
 
+    // One possible solution would be to compute routes for all packages and then take the shortest one. Even better results can be obtained, if there are multiple shortest routes, by preferring the ones that go to pick up a package instead of delivering a package.
+    // refreshing how the goalOrientedRobot works - 10 jan 2021
+
+}
 // compareRobots(goalOrientedRobot, [], improvedRobot, []);
+
 //#endregion
